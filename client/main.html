@@ -1,0 +1,92 @@
+<head>
+    <title>twitch</title>
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<script src="https://embed.twitch.tv/embed/v1.js"></script>-->
+</head>
+
+<body style="background-color: black;">
+    {{#if showStreams}}
+        {{> swiperMenu}}
+    {{/if}}
+    {{> ttvStream}}
+</body>
+
+<template name="swiperMenu">
+    <div class="layout vertical swiper-streams-wrapper" style="color:white;">
+        {{> swiper swiperOptions}}
+    </div>
+    <style>
+        .swiper-streams-wrapper{
+            position: absolute;
+            width: 960px;
+            height: 200px;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .swiper-slide-active{
+            border: 2px solid black;
+        }
+    </style>
+</template>
+
+<template name="streamSlide">
+    {{#with ttvStream}}
+        {{#if thumbnail_url}}
+            <div class="layout vertical" style="width: 100%; height: 100%; background-image: url({{thumbnail_url}});">
+                <div class="flex-1" style="color:black;">{{login}}</div>
+                <div class="flex-1" style="color:black;">{{title}}</div>
+            </div>
+        {{else}}
+            <div class="layout vertical" style="width: 100%; height: 100%; background-image: url({{profile_image_url}});">
+                <div class="flex-1" style="color:black;">{{login}}</div>
+            </div>
+        {{/if}}
+    {{/with}}
+</template>
+
+
+<template name="ttvStream">
+    <!--when using js library commented out in head-->
+    <div id="twitch-embed"></div>
+    <script>
+        function test() {
+            console.log('test')
+        }
+    </script>
+    {{#with stream}}
+        <iframe
+            onfocus="test()"
+            id="iframe"
+            src="https://player.twitch.tv/?channel={{login}}"
+            height="540"
+            width="960"
+            frameborder="0"
+            scrolling="no"
+            allowfullscreen="false">
+        </iframe>
+    {{/with}}
+</template>
+
+
+

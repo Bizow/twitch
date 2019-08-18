@@ -1,0 +1,11 @@
+<template name="ttvStreams">
+    <div class="layout horizontal wrap justified space-evenly" style="height:100%; overflow: scroll;">
+        {{#each ttvStreams}}
+            <div style="color: white;">
+                <div style="width: 240px; height: 135px; background-image: url({{thumbnail_url}});">
+                    <div>{{user_name}}</div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>

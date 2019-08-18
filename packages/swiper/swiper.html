@@ -1,0 +1,16 @@
+<template name="swiper">
+    <div class="swiper-container {{containerClass}}">
+        <div class="swiper-wrapper">
+            {{#each slides}}
+                {{> swiperSlide}}
+            {{/each}}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</template>
+
+<template name="swiperSlide">
+    <div class="swiper-slide">
+        {{> Template.dynamic template=template}}
+    </div>
+</template>
